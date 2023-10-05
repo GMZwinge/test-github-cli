@@ -19,7 +19,7 @@ jobs:
       #  fatal: could not read Username for 'https://github.com': No such device or address
       # https://github.com/orgs/community/discussions/26580 talks about this.
       # From abannachGrafana:
-      - run: git config --global url.https://${{ secrets.GITHUB_TOKEN }}@github.com/.insteadOf https://github.com/
+      - run: git config --global url.https://${{ secrets.PAT }}@github.com/.insteadOf https://github.com/
       - run: git push --set-upstream origin branch
       - run: gh pr create --fill
         env:
