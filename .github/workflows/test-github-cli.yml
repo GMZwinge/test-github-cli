@@ -1,0 +1,13 @@
+on: workflow_dispatch
+jobs:
+  test-github-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo clone GMZwinge/test-github-cli2 .
+      - run: git checkout -b branch
+      - run: date +%s > report.txt
+      - run: git add .
+      - run: git commit -m dummy
+      - run: git push
+      - run: gh pr create --fill
+      
