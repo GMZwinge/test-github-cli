@@ -15,6 +15,8 @@ jobs:
       - run: git config --global user.email "you@example.com"
       - run: git config --global user.name "Your Name"
       - run: git commit -m dummy
+      # Even with permission: write-all, this gives this error:
+      #  fatal: could not read Username for 'https://github.com': No such device or address
       - run: git push --set-upstream origin branch
       - run: gh pr create --fill
         env:
