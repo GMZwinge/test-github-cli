@@ -4,10 +4,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: gh repo clone GMZwinge/test-github-cli2 .
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: git checkout -b branch
       - run: date +%s > report.txt
       - run: git add .
       - run: git commit -m dummy
       - run: git push
       - run: gh pr create --fill
-      
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
