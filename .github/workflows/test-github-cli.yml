@@ -21,6 +21,10 @@ jobs:
       # From abannachGrafana:
       - run: git config --global url.https://${{ secrets.PAT }}@github.com/.insteadOf https://github.com/
       - run: git push --set-upstream origin branch
+      # The `gh pr create` gives this error:
+      #  pull request create failed: GraphQL: Resource not accessible by integration (createPullRequest)
       - run: gh pr create --fill
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Does using path instead of GITHUB_TOKEN avoid the error?
+          GH_TOKEN: ${{ secrets.PAT }}
