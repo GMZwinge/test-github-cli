@@ -9,6 +9,10 @@ jobs:
       - run: git checkout -b branch
       - run: date +%s > report.txt
       - run: git add .
+      # To avoid this error during `git commit`:
+      #    Author identity unknown
+      - run: git config --global user.email "you@example.com"
+      - run: git config --global user.name "Your Name"
       - run: git commit -m dummy
       - run: git push
       - run: gh pr create --fill
