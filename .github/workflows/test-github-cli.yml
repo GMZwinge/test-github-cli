@@ -7,6 +7,14 @@ jobs:
       - run: gh repo clone GMZwinge/test-github-cli2 .
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          if [ -n "$(git ls-remote --heads origin refs/heads/branch)" ]; then
+            # Check out existing remote branch.
+            git checkout branch
+          else
+            # Create and checkout local branch.
+            git checkout -b branch
+          fi
       - run: git checkout -b branch
       - run: date +%s > report.txt
       - run: git add .
