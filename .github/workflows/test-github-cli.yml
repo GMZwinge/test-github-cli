@@ -2,6 +2,7 @@ on: workflow_dispatch
 jobs:
   test-github-cli:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - run: gh repo clone GMZwinge/test-github-cli2 .
         env:
