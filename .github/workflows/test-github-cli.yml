@@ -17,6 +17,9 @@ jobs:
       - run: git commit -m dummy
       # Even with permission: write-all, this gives this error:
       #  fatal: could not read Username for 'https://github.com': No such device or address
+      # https://github.com/orgs/community/discussions/26580 talks about this.
+      # From abannachGrafana:
+      - run: git config --global url.https://${{ secrets.GITHUB_TOKEN }}@github.com/.insteadOf https://github.com/
       - run: git push --set-upstream origin branch
       - run: gh pr create --fill
         env:
